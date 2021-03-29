@@ -7,19 +7,22 @@ public class HomeWorkApp
         System.out.println("Task 1.");
         int a = 0;
         int b = 1;
-        System.out.println(isSumBetween10And20(a, b));
+        boolean isBetween = isSumBetween10And20(a, b);
+        System.out.println(isBetween);
 
         System.out.println("Task 2.");
         printSignOf(5);
 
         System.out.println("Task 3.");
-        System.out.println(isNegative(-2));
+        boolean isNegative = isNegative(-2);
+        System.out.println(isNegative);
 
         System.out.println("Task 4.");
         print("Hello world!", 5);
 
         System.out.println("Task 5.");
-        System.out.println(isLeapYear(2021));
+        boolean isLeap = isLeapYear(2021);
+        System.out.println(isLeap);
     }
 
     // 1. Написать метод, принимающий на вход два целых числа
