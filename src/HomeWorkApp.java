@@ -21,7 +21,7 @@ public class HomeWorkApp
         print("Hello world!", 5);
 
         System.out.println("Task 5.");
-        boolean isLeap = isLeapYear(2021);
+        boolean isLeap = isLeapYear(2020);
         System.out.println(isLeap);
     }
 
@@ -79,11 +79,20 @@ public class HomeWorkApp
     // при этом каждый 400-й – високосный.
     public static boolean isLeapYear(int year)
     {
-        if (year % 4 == 0 && year % 100 != 0)
-        {
-            return true;
-        }
-        else if (year % 400 == 0)
+//        if (year % 4 == 0 && year % 100 != 0)
+//        {
+//            return true;
+//        }
+//        else if (year % 400 == 0)
+//        {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
         {
             return true;
         }
@@ -93,5 +102,13 @@ public class HomeWorkApp
         }
 
         // return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+    }
+
+    public static void printWordNTimes(String word, int times)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            System.out.print(word);
+        }
     }
 }
