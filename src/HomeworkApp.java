@@ -168,15 +168,13 @@ public class HomeworkApp
 
         for (int rowOffset = 0; rowOffset <= endOfOffset; rowOffset++)
         {
-            if (isDiagonalsFilledWith(symb, rowOffset))
-            {
-                return true;
-            }
+
 
             for (int columnOffset = 0; columnOffset <= endOfOffset; columnOffset++)
             {
                 boolean hasWin =
-                    isLinesFilledWith(symb, rowOffset, columnOffset);
+                    isLinesFilledWith(symb, rowOffset, columnOffset) ||
+                    isDiagonalsFilledWith(symb, rowOffset, columnOffset);
 
                 if (hasWin)
                 {
@@ -227,17 +225,15 @@ public class HomeworkApp
         return false;
     }
 
-    static boolean isDiagonalsFilledWith(char symb, int rowOffset)
+    static boolean isDiagonalsFilledWith(char symb, int rowOffset, int columnOffset)
     {
         int mainDiagonalCounter = 0;
         int sideDiagonalCounter = 0;
 
-        final int subSquareLength = (DOTS_TO_WIN + rowOffset);
-
-        for (int row = rowOffset; row < subSquareLength; row++)
+        for (int row = 0; row < DOTS_TO_WIN; row++)
         {
             // проверка главной диагонали
-            if (map[row][row] == symb)
+            if (map[row + rowOffset][row + columnOffset] == symb)
             {
                 mainDiagonalCounter++;
             }
@@ -247,7 +243,7 @@ public class HomeworkApp
             }
 
             // проверка побочной диагонали
-            if (map[row][map.length - 1 - row] == symb)
+            if (map[row + rowOffset][DOTS_TO_WIN - 1 - row + columnOffset] == symb)
             {
                 sideDiagonalCounter++;
             }
