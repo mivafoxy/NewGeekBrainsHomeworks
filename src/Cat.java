@@ -8,12 +8,14 @@ public class Cat
     private boolean isFull;
     private int appetite;
     private String name;
+    private Person host;
 
-    public Cat(int appetite, String name)
+    public Cat(int appetite, String name, Person host)
     {
         isFull = false;
         this.appetite = appetite;
         this.name = name;
+        this.host = host;
     }
 
     // 4. Считаем, что
@@ -32,6 +34,7 @@ public class Cat
         else if (!plate.hasEnoughFoodFor(appetite))
         {
             System.out.println(name + " недовольно рычит, ведь у тарелки видно дно!");
+            host.addFoodTo(plate, appetite);
         }
         else if (isFull)
         {

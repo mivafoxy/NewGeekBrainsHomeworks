@@ -11,24 +11,29 @@ public class Main
 {
     public static void main(String[] args)
     {
+        Person host = new Person();
+
         Cat[] cats = {
-            new Cat(5, "Дуся"),
-            new Cat(7, "Мурзик"),
-            new Cat(10, "Мышкин")
+            new Cat(4, "Дуся", host),
+            new Cat(5, "Мурзик", host),
+            new Cat(10, "Мышкин", host)
         };
 
-        Plate plate = new Plate(20);
+        Plate plate = new Plate(0);
 
+        plate.showInfo();
+
+        // for (тип_данных имя_переменной : массив/коллекция)
         for (Cat cat : cats)
         {
             cat.eat(plate);
+            plate.showInfo();
         }
 
-        plate.increaseFood(50);
-
         for (Cat cat : cats)
         {
             cat.eat(plate);
+            plate.showInfo();
         }
     }
 }

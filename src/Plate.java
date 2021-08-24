@@ -24,9 +24,13 @@ public class Plate
         }
     }
 
+    public void showInfo() {
+        System.out.println("В тарелке " + food + " единиц еды.");
+    }
+
     public boolean hasEnoughFoodFor(int appetite)
     {
-        return appetite < food;
+        return appetite <= food;
     }
 
     // 6. Добавить в тарелку метод,
