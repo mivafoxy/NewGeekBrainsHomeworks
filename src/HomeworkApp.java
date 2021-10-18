@@ -200,14 +200,10 @@ public class HomeworkApp
             for (int column = 0; column < subMap.length; column++) {
                 if (subMap[row][column] == symb) {
                     horizontalWinCounter++;
-                } else {
-                    horizontalWinCounter = 0;
                 }
 
                 if (subMap[column][row] == symb) {
                     verticalWinCounter++;
-                } else {
-                    verticalWinCounter = 0;
                 }
             }
 
@@ -228,16 +224,11 @@ public class HomeworkApp
             // проверка главной диагонали
             if (subMap[row][row] == symb) {
                 mainDiagonalCounter++;
-            } else {
-                mainDiagonalCounter = 0;
             }
 
             // проверка побочной диагонали
             if (subMap[row ][DOTS_TO_WIN - 1 - row] == symb) {
                 sideDiagonalCounter++;
-            }
-            else {
-                sideDiagonalCounter = 0;
             }
         }
 
