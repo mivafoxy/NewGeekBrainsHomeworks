@@ -162,22 +162,16 @@ public class HomeworkApp
      * Очень желательно не делать это просто набором условий
      * для каждой из возможных ситуаций;
      */
-    static boolean isWinner(char symb)
-    {
+    static boolean isWinner(char symb) {
         int endOfOffset = map.length - DOTS_TO_WIN;
 
         for (int rowOffset = 0; rowOffset <= endOfOffset; rowOffset++)
         {
-
-
             for (int columnOffset = 0; columnOffset <= endOfOffset; columnOffset++)
             {
-                boolean hasWin =
-                    isLinesFilledWith(symb, rowOffset, columnOffset) ||
-                    isDiagonalsFilledWith(symb, rowOffset, columnOffset);
-
-                if (hasWin)
-                {
+                char[][] subSquare = getSubSquare(rowOffset, columnOffset);
+                boolean hasWinner = isLinesFilledWith(symb, subSquare) || isDiagonalsFilledWith(symb, subSquare);
+                if (hasWinner) {
                     return true;
                 }
             }
@@ -186,38 +180,38 @@ public class HomeworkApp
         return false;
     }
 
-    static boolean isLinesFilledWith(char symb, int rowOffset, int columnOffset)
-    {
-        for (int row = rowOffset; row < (DOTS_TO_WIN + rowOffset); row++)
-        {
+    static char[][] getSubSquare(int rowOffset, int columnOffset) {
+        char[][] subSquare = new char[DOTS_TO_WIN][DOTS_TO_WIN];
+
+        for (int row = 0; row < DOTS_TO_WIN; row++) {
+            for (int column = 0; column < DOTS_TO_WIN; column++) {
+                subSquare[row][column] = map[row + rowOffset][column + columnOffset];
+            }
+        }
+
+        return subSquare;
+    }
+
+    static boolean isLinesFilledWith(char symb, char[][] subMap) {
+        for (int row = 0; row < subMap.length; row++) {
             int horizontalWinCounter = 0;
             int verticalWinCounter = 0;
 
-            for (int column = columnOffset; column < (DOTS_TO_WIN + columnOffset); column++)
-            {
-                // проверка горизонтали
-                if (map[row][column] == symb)
-                {
+            for (int column = 0; column < subMap.length; column++) {
+                if (subMap[row][column] == symb) {
                     horizontalWinCounter++;
-                }
-                else
-                {
+                } else {
                     horizontalWinCounter = 0;
                 }
 
-                // проверка вертикали
-                if (map[column][row] == symb)
-                {
+                if (subMap[column][row] == symb) {
                     verticalWinCounter++;
-                }
-                else
-                {
+                } else {
                     verticalWinCounter = 0;
                 }
             }
 
-            if ((horizontalWinCounter == DOTS_TO_WIN) || (verticalWinCounter == DOTS_TO_WIN))
-            {
+            if (horizontalWinCounter == DOTS_TO_WIN || verticalWinCounter == DOTS_TO_WIN) {
                 return true;
             }
         }
@@ -225,30 +219,24 @@ public class HomeworkApp
         return false;
     }
 
-    static boolean isDiagonalsFilledWith(char symb, int rowOffset, int columnOffset)
-    {
+    static boolean isDiagonalsFilledWith(char symb, char[][] subMap) {
         int mainDiagonalCounter = 0;
         int sideDiagonalCounter = 0;
 
         for (int row = 0; row < DOTS_TO_WIN; row++)
         {
             // проверка главной диагонали
-            if (map[row + rowOffset][row + columnOffset] == symb)
-            {
+            if (subMap[row][row] == symb) {
                 mainDiagonalCounter++;
-            }
-            else
-            {
+            } else {
                 mainDiagonalCounter = 0;
             }
 
             // проверка побочной диагонали
-            if (map[row + rowOffset][DOTS_TO_WIN - 1 - row + columnOffset] == symb)
-            {
+            if (subMap[row ][DOTS_TO_WIN - 1 - row] == symb) {
                 sideDiagonalCounter++;
             }
-            else
-            {
+            else {
                 sideDiagonalCounter = 0;
             }
         }
